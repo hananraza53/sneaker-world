@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Login & Signup</title>
+    <style>
+        .name{
+            cursor:default;
+            background-color: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 15px inset black;
+        }
+        footer{
+            cursor: default;
+        }
+        header{
+            cursor: default;
+        }
+          #particleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1; /* Keeps the canvas behind all content */
+        }
+        /* Animated Background */
+        @keyframes backgroundAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+            100%{
+                background-position: 0% 50%;
+            }
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            background: linear-gradient(to right, #67f7c2, #01ac6d, #005b3a);
+            animation: backgroundAnimation 8s ease infinite;
+            background-size: 200% 200%;
+            cursor: none;
+        }
+
+        /* Slide-in Animation for Form */
+        @keyframes slideInFromTop {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Form Inputs & Buttons Animations */
+        input,
+        button {
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            border-color: #67f7c2;
+            box-shadow: 0 0 5px rgba(103, 247, 194, 0.7);
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Add slide-in animation on form visibility */
+        .form-enter {
+            animation: slideInFromTop 0.6s ease-out forwards;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="particleCanvas"></canvas>
+    <!-- Container for Login and Signup Forms -->
+    <div class="name w-full max-w-md p-8 rounded-lg mb-8">
+        <h2 class="text-2xl font-bold text-center mb-8">"Your Sneaker Collection Awaits!"</h2>
+
+        <!-- Tabs for Login and Signup -->
+        <div class="flex justify-around mb-6">
+            <button id="login-tab" class="w-1/2 py-2 text-lg font-semibold bg-gray-200 rounded-tl-lg hover:bg-gray-300 transition-all">Login</button>
+            <button id="signup-tab" class="w-1/2 py-2 text-lg font-semibold bg-gray-200 rounded-tr-lg hover:bg-gray-300 transition-all">Signup</button>
+        </div>
+
+        <!-- Login Form -->
+        <div class="login-form space-y-4 form-enter hidden">
+            <div>
+                <label for="login-email" class="block text-sm font-semibold">Email</label>
+                <input id="login-email" type="email" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Enter your email" required>
+            </div>
+            <div>
+                <label for="login-password" class="block text-sm font-semibold">Password</label>
+                <input id="login-password" type="password" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Enter your password" required>
+            </div>
+            <button id="login-btn" class="w-full py-2 text-white bg-blue-500 hover:bg-blue-600 rounded-md cursor-not-allowed opacity-50" disabled>Login</button>
+            <p class="text-sm text-center text-gray-500">
+                Don't have an account? <a href="#" id="to-signup" class="text-blue-500 hover:underline">Sign Up</a>
+            </p>
+        </div>
+
+        <!-- Signup Form (Initially Hidden) -->
+        <div class="signup-form space-y-4 form-enter hidden">
+            <div>
+                <label for="signup-name" class="block text-sm font-semibold">Name</label>
+                <input id="signup-name" type="text" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Enter your full name" required>
+            </div>
+            <div>
+                <label for="signup-email" class="block text-sm font-semibold">Email</label>
+                <input id="signup-email" type="email" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Enter your email" required>
+            </div>
+            <div>
+                <label for="signup-password" class="block text-sm font-semibold">Password</label>
+                <input id="signup-password" type="password" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Enter your password" required>
+            </div>
+            <button id="signup-btn" class="w-full py-2 text-white bg-green-500 hover:bg-green-600 rounded-md cursor-not-allowed opacity-50" disabled>Sign Up</button>
+            <p class="text-sm text-center text-gray-500">
+                Already have an account? <a href="#" id="to-login" class="text-blue-500 hover:underline">Login</a>
+            </p>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-green-600 via-green-400 to-green-600 py-10 text-white w-full mt-auto">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 px-4">
+            <!-- Company Info -->
+            <div>
+                <h3 class="font-semibold text-xl mb-4">Sneaker World</h3>
+                <p class="text-gray-200 mb-4">
+                    Your one-stop shop for the best shoes. Find the perfect fit and style for any occasion.
+                </p>
+                <p>&copy; 2026 SneakerWorld. All Rights Reserved.</p>
+            </div>
+
+            <!-- Links -->
+            <div>
+                <h3 class="font-semibold text-xl mb-4">Company</h3>
+                <ul class="space-y-2">
+                    <li><a href="about.html" class="hover:underline">About Us</a></li>
+                    <li><a href="#" class="hover:underline">Careers</a></li>
+                    <li><a href="#" class="hover:underline">Press</a></li>
+                    <li><a href="blog.html" class="hover:underline">Blog</a></li>
+                </ul>
+            </div>
+
+            <!-- Support -->
+            <div>
+                <h3 class="font-semibold text-xl mb-4">Support</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:underline">Help Center</a></li>
+                    <li><a href="#" class="hover:underline">Shipping & Returns</a></li>
+                    <li><a href="#" class="hover:underline">FAQs</a></li>
+                    <li><a href="contact.html" class="hover:underline">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <!-- Social Links & Newsletter -->
+            <div>
+                <h3 class="font-semibold text-xl mb-4">Stay Connected</h3>
+                <div class="flex space-x-4 mb-4">
+                    <a href="#" class="text-white hover:text-yellow-300 transition duration-300">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="text-white hover:text-yellow-300 transition duration-300">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-white hover:text-yellow-300 transition duration-300">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-white hover:text-yellow-300 transition duration-300">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+                <p class="text-gray-200 mb-4">Subscribe to our newsletter for updates.</p>
+                <form>
+                    <input type="email" placeholder="Your email" class="p-2 rounded w-full">
+                    <button class="mt-2 w-full bg-yellow-300 text-green-900 py-2 rounded hover:bg-yellow-400 transition duration-300">
+                        Subscribe
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Back to Homepage Button in Footer -->
+        <div class="text-center mt-8">
+            <a href="index.html" class="w-full py-2 bg-yellow-300 text-green-900 rounded-md hover:bg-yellow-400 transition duration-300">Back to Homepage</a>
+        </div>
+    </footer>
+
+    <script>
+        // Switching between Login and Signup forms
+        const loginButton = document.getElementById('login-tab');
+        const signupButton = document.getElementById('signup-tab');
+
+        const loginForm = document.querySelector('.login-form');
+        const signupForm = document.querySelector('.signup-form');
+
+        const toSignupLink = document.getElementById('to-signup');
+        const toLoginLink = document.getElementById('to-login');
+
+        loginButton.addEventListener('click', () => {
+            loginForm.classList.remove('hidden');
+            signupForm.classList.add('hidden');
+            loginForm.classList.add('form-enter');
+            signupButton.classList.remove('bg-gray-200');
+            loginButton.classList.add('bg-gray-200');
+        });
+
+        signupButton.addEventListener('click', () => {
+            signupForm.classList.remove('hidden');
+            loginForm.classList.add('hidden');
+            signupForm.classList.add('form-enter');
+            loginButton.classList.remove('bg-gray-200');
+            signupButton.classList.add('bg-gray-200');
+        });
+
+        // Switching between Login and Signup forms via links
+        toSignupLink.addEventListener('click', () => {
+            signupForm.classList.remove('hidden');
+            loginForm.classList.add('hidden');
+            signupForm.classList.add('form-enter');
+            loginButton.classList.remove('bg-gray-200');
+            signupButton.classList.add('bg-gray-200');
+        });
+
+        toLoginLink.addEventListener('click', () => {
+            loginForm.classList.remove('hidden');
+            signupForm.classList.add('hidden');
+            loginForm.classList.add('form-enter');
+            signupButton.classList.remove('bg-gray-200');
+            loginButton.classList.add('bg-gray-200');
+        });
+
+        // Input Validation for Login
+        const loginEmail = document.getElementById('login-email');
+        const loginPassword = document.getElementById('login-password');
+        const loginBtn = document.getElementById('login-btn');
+
+        loginEmail.addEventListener('input', validateLogin);
+        loginPassword.addEventListener('input', validateLogin);
+
+        function validateLogin() {
+            if (loginEmail.value.trim() && loginPassword.value.trim()) {
+                loginBtn.disabled = false;
+                loginBtn.classList.remove('opacity-50');
+                loginBtn.classList.add('cursor-pointer');
+            } else {
+                loginBtn.disabled = true;
+                loginBtn.classList.add('opacity-50');
+                loginBtn.classList.remove('cursor-pointer');
+            }
+        }
+
+        // Input Validation for Signup
+        const signupEmail = document.getElementById('signup-email');
+        const signupPassword = document.getElementById('signup-password');
+        const signupBtn = document.getElementById('signup-btn');
+
+        signupEmail.addEventListener('input', validateSignup);
+        signupPassword.addEventListener('input', validateSignup);
+
+        function validateSignup() {
+            if (signupEmail.value.trim() && signupPassword.value.trim()) {
+                signupBtn.disabled = false;
+                signupBtn.classList.remove('opacity-50');
+                signupBtn.classList.add('cursor-pointer');
+            } else {
+                signupBtn.disabled = true;
+                signupBtn.classList.add('opacity-50');
+                signupBtn.classList.remove('cursor-pointer');
+            }
+        }
+    </script>
+    <script>
+        const canvas = document.getElementById("particleCanvas"); 
+        const ctx = canvas.getContext("2d");
+
+        // Set canvas size to full window
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Load shoe images
+        const shoeImages = [
+            'Images/90-removebg-preview.png', 
+            'Images/f93800d0479d8e16f46d7217bddd25d6-removebg-preview.png', 
+            'Images/airforce_1-removebg-preview.png'
+        ];
+
+        // Particle constructor function
+        function Particle(x, y) {
+            this.x = x;
+            this.y = y;
+            this.size = Math.random() * 5 + 25; // Adjust size for image scaling
+            this.speedX = Math.random() * 2 - 1.5;
+            this.speedY = Math.random() * 2 - 1.5;
+            this.life = 100; // life of the particle in frames
+            this.opacity = 1;
+
+            // Randomly select a shoe image
+            this.shoeImage = new Image();
+            this.shoeImage.src = shoeImages[Math.floor(Math.random() * shoeImages.length)];
+        }
+
+        // Draw the particle (using an image instead of a circle)
+        Particle.prototype.update = function () {
+            this.x += this.speedX;
+            this.y += this.speedY;
+
+            // Quick opacity and size reduction to mimic Thanos snap
+            this.opacity -= 0.02;  // Fast fade-out effect
+            this.size *= 1;        // Shrinking effect
+
+            this.life--;
+        };
+
+        // Check if particle is still alive
+        Particle.prototype.isAlive = function () {
+            return this.life > 0 && this.opacity > 0;
+        };
+
+        // Create an array to store particles
+        let particles = [];
+
+        // Mouse event listener
+        document.addEventListener("mousemove", (event) => {
+            let mouseX = event.x;
+            let mouseY = event.y;
+            createParticles(mouseX, mouseY);
+        });
+
+        // Function to create particles at mouse position
+        function createParticles(x, y) {
+            for (let i = 0; i < 2; i++) {
+                particles.push(new Particle(x, y));
+            }
+        }
+
+        // Update and draw particles every frame
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height); // clear canvas
+
+            // Update and draw each particle
+            particles = particles.filter(particle => {
+                if (particle.isAlive()) {
+                    particle.update();
+                    ctx.globalAlpha = particle.opacity; // Set opacity
+                    ctx.drawImage(particle.shoeImage, particle.x - particle.size / 2, particle.y - particle.size / 2, particle.size, particle.size);
+                    return true;
+                }
+                return false;
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate(); // Start animation loop
+    </script>
+</body>
+
+</html>

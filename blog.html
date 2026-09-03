@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Sneaker World - The Best Online Shopping Experience</title>
+    <!-- style -->
+    <style>
+        section{
+            cursor: default;
+        }
+        header{
+            cursor: default;
+        }
+        footer{
+            cursor:default;
+        }
+        #particleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1; /* Keeps the canvas behind all content */
+        }
+        /* Background animation */
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        /* Apply the animation to body */
+        body {
+            cursor: none;
+            background: linear-gradient(to right, #67f7c2, #01ac6d, #005b3a);
+            background-size: 200% 200%;
+            animation: gradientAnimation 8s ease infinite;
+            cursor: none;
+        }
+        nav {
+            animation: slider 5s linear infinite;
+            background-size: 400%;
+        }
+        @keyframes slider {
+            from{
+                background-position: 100% 50%;
+            }
+            to{
+                background-position: 0% 50%;
+            }
+        }
+        h1{
+            background-image: linear-gradient(90deg, green, lightgreen, darkgreen);
+            background-size: 400%;
+            animation:slide 5s linear infinite;
+        }
+        @keyframes slide {
+            from {
+                background-position: 0% 50%;
+            }
+            to{
+                background-position: 100% 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="particleCanvas"></canvas>
+   <!-- Navbar -->
+   <nav class="bg-gradient-to-r from-green-600 via-yellow-400 to-green-600 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="flex items-center py-5 px-2 text-white hover:text-yellow-300 transition duration-300">
+                        <svg class="h-8 w-8 text-yellow-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6l-2 6h4l-2 6" />
+                        </svg>
+                        <span class="font-bold text-xl uppercase">Sneaker World</span>
+                    </a>
+                </div>
+
+                <!-- Primary Nav Links (centered) -->
+                <div class="hidden md:flex justify-center flex-grow space-x-4">
+                    <a href="index.html" class="py-5 px-3 text-white hover:text-yellow-300 hover:bg-green-700 transition duration-300 rounded">Home</a>
+                    <a href="about.html" class="py-5 px-3 text-white hover:text-yellow-300 hover:bg-green-700 transition duration-300 rounded">About</a>
+                    <a href="services.html" class="py-5 px-3 text-white hover:text-yellow-300 hover:bg-green-700 transition duration-300 rounded">Services</a>
+                    <a href="contact.html" class="py-5 px-3 text-white hover:text-yellow-300 hover:bg-green-700 transition duration-300 rounded">Contact</a>
+                </div>
+
+                <!-- Secondary Nav -->
+                <div class="hidden md:flex items-center space-x-2">
+                    <a href="login.html" class="py-2 px-4 bg-yellow-300 text-green-900 font-semibold rounded hover:bg-yellow-400 hover:text-green-800 transition duration-300">Login</a>
+                    <a href="login.html" class="py-2 px-4 bg-white text-green-900 font-semibold rounded hover:bg-gray-200 transition duration-300">Signup</a>
+                </div>
+
+                <!-- Mobile button -->
+                <div class="md:hidden flex items-center">
+                    <button class="mobile-menu-button">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu hidden md:hidden bg-green-600">
+            <a href="index.html" class="block py-2 px-4 text-white hover:bg-green-700 hover:text-yellow-300 transition duration-300">Home</a>
+            <a href="about.html" class="block py-2 px-4 text-white hover:bg-green-700 hover:text-yellow-300 transition duration-300">About</a>
+            <a href="services.html" class="block py-2 px-4 text-white hover:bg-green-700 hover:text-yellow-300 transition duration-300">Services</a>
+            <a href="contact.html" class="block py-2 px-4 text-white hover:bg-green-700 hover:text-yellow-300 transition duration-300">Contact</a>
+        </div>
+    </nav>
+    <script>
+        // Mobile menu toggle
+        const btn = document.querySelector('button.mobile-menu-button');
+        const menu = document.querySelector('.mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+    </script>
+    <!-- Header Section -->
+    <header class="bg-white py-6 shadow-md">
+        <div class="container mx-auto">
+            <h1 class="text-4xl font-bold text-center text-white py-4 px-8 rounded-lg shadow-lg">
+                Sneaker World
+            </h1>
+            <p class="text-2xl text-center text-blue-600 font-semibold mt-4">Your Ultimate Destination for Online Shoe Shopping</p>
+
+        </div>
+    </header>
+
+    <!-- Blog Post Section -->
+    <section class="max-w-4xl mx-auto my-8 p-6 bg-gray-200 shadow-lg rounded-lg">
+        <h2 class="text-3xl font-semibold text-blue-600 mb-4">Why Online Shopping for Sneakers is the Future</h2>
+        <p class="text-lg mb-6">
+            Shopping for sneakers has never been easier. With just a few clicks, you can explore a wide variety of brands, styles, and sizes from the comfort of your home. Whether you're a sneakerhead or simply looking for a pair of comfortable everyday shoes, online shopping provides countless advantages that traditional in-store shopping just can't match.
+        </p>
+
+        <h3 class="text-2xl font-medium text-blue-500 mb-3">The Benefits of Online Sneaker Shopping</h3>
+        <ul class="list-disc pl-6 space-y-3 text-lg">
+            <li><strong>Vast Selection:</strong> Online stores offer a much broader selection of sneakers than physical stores, allowing you to shop from a variety of brands, sizes, and designs that may not be available locally.</li>
+            <li><strong>Convenience:</strong> Shopping for sneakers online means you can shop anytime and from anywhere—no need to deal with crowded malls or limited store hours. Whether it’s morning, evening, or even late at night, your perfect pair of sneakers is just a click away.</li>
+            <li><strong>Comparing Prices:</strong> Online platforms make it easy to compare prices across different websites, ensuring you get the best deals on your favorite sneakers. Many sites also offer exclusive online discounts and sales.</li>
+            <li><strong>Customer Reviews:</strong> Before making a purchase, you can check out user reviews and ratings to see how the sneakers perform in real-life use. This helps ensure you're investing in a quality product that meets your needs.</li>
+            <li><strong>Easy Returns:</strong> Many online stores have flexible return policies, making it simple to return or exchange shoes if they don’t fit or aren’t exactly what you wanted.</li>
+        </ul>
+
+        <h3 class="text-2xl font-medium text-blue-500 mt-6 mb-3">Tips for a Successful Online Sneaker Shopping Experience</h3>
+        <ul class="list-disc pl-6 space-y-3 text-lg">
+            <li><strong>Know Your Size:</strong> Different brands may have slightly different sizing. Be sure to check size charts and read customer reviews for sizing tips.</li>
+            <li><strong>Check Shipping Details:</strong> Make sure you review the shipping times and costs before placing your order to avoid any surprises.</li>
+            <li><strong>Look for Discounts:</strong> Keep an eye out for seasonal sales or promo codes that can help you save money on your purchase.</li>
+        </ul>
+
+        <p class="text-lg mt-6">
+            In conclusion, online sneaker shopping offers convenience, variety, and better opportunities to find the best deals. Whether you're looking for a high-performance running shoe or a trendy pair of sneakers for everyday use, the world of online shopping is at your fingertips. Don’t miss out on the chance to explore the latest releases and exclusive styles from the comfort of your home.
+        </p>
+
+        <div class="mt-8 text-center">
+            <a href="index.html" class="text-xl text-blue-600 hover:underline">Explore Sneakers Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+   <footer class="bg-gradient-to-r from-green-600 via-green-400 to-green-600 py-10 text-white w-full mt-auto">
+    <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 px-4">
+        <!-- Company Info -->
+        <div>
+            <h3 class="font-semibold text-xl mb-4">ShoeHub</h3>
+            <p class="text-gray-200 mb-4">
+                Your one-stop shop for the best shoes. Find the perfect fit and style for any occasion.
+            </p>
+            <p>&copy; 2024 ShoeHub. All Rights Reserved.</p>
+        </div>
+
+        <!-- Links -->
+        <div>
+            <h3 class="font-semibold text-xl mb-4">Company</h3>
+            <ul class="space-y-2">
+                <li><a href="about.html" class="hover:underline">About Us</a></li>
+                <li><a href="#" class="hover:underline">Careers</a></li>
+                <li><a href="#" class="hover:underline">Press</a></li>
+                <li><a href="#" class="hover:underline">Blog</a></li>
+            </ul>
+        </div>
+
+        <!-- Support -->
+        <div>
+            <h3 class="font-semibold text-xl mb-4">Support</h3>
+            <ul class="space-y-2">
+                <li><a href="#" class="hover:underline">Help Center</a></li>
+                <li><a href="#" class="hover:underline">Shipping & Returns</a></li>
+                <li><a href="#" class="hover:underline">FAQs</a></li>
+                <li><a href="contact.html" class="hover:underline">Contact Us</a></li>
+            </ul>
+        </div>
+
+        <!-- Social Links & Newsletter -->
+        <div>
+            <h3 class="font-semibold text-xl mb-4">Stay Connected</h3>
+            <div class="flex space-x-4 mb-4">
+                <a href="#" class="text-white hover:text-yellow-300 transition duration-300">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="text-white hover:text-yellow-300 transition duration-300">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="text-white hover:text-yellow-300 transition duration-300">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="text-white hover:text-yellow-300 transition duration-300">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+            <p class="text-gray-200 mb-4">Subscribe to our newsletter for updates.</p>
+            <form>
+                <input type="email" placeholder="Your email" class="p-2 rounded w-full">
+                <button class="mt-2 w-full bg-yellow-300 text-green-900 py-2 rounded hover:bg-yellow-400 transition duration-300">
+                    Subscribe
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Back to Homepage Button in Footer -->
+    <div class="text-center mt-8">
+        <a href="index.html" class="w-full py-2 bg-yellow-300 text-green-900 rounded-md hover:bg-yellow-400 transition duration-300">Back to Homepage</a>
+    </div>
+</footer>
+<script>
+    const canvas = document.getElementById("particleCanvas"); 
+    const ctx = canvas.getContext("2d");
+
+    // Set canvas size to full window
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // Load shoe images
+    const shoeImages = [
+        'Images/90-removebg-preview.png', 
+        'Images/f93800d0479d8e16f46d7217bddd25d6-removebg-preview.png', 
+        'Images/airforce_1-removebg-preview.png'
+    ];
+
+    // Particle constructor function
+    function Particle(x, y) {
+        this.x = x;
+        this.y = y;
+        this.size = Math.random() * 5 + 25; // Adjust size for image scaling
+        this.speedX = Math.random() * 2 - 1.5;
+        this.speedY = Math.random() * 2 - 1.5;
+        this.life = 100; // life of the particle in frames
+        this.opacity = 1;
+
+        // Randomly select a shoe image
+        this.shoeImage = new Image();
+        this.shoeImage.src = shoeImages[Math.floor(Math.random() * shoeImages.length)];
+    }
+
+    // Draw the particle (using an image instead of a circle)
+    Particle.prototype.update = function () {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        // Quick opacity and size reduction to mimic Thanos snap
+        this.opacity -= 0.02;  // Fast fade-out effect
+        this.size *= 1;        // Shrinking effect
+
+        this.life--;
+    };
+
+    // Check if particle is still alive
+    Particle.prototype.isAlive = function () {
+        return this.life > 0 && this.opacity > 0;
+    };
+
+    // Create an array to store particles
+    let particles = [];
+
+    // Mouse event listener
+    document.addEventListener("mousemove", (event) => {
+        let mouseX = event.x;
+        let mouseY = event.y;
+        createParticles(mouseX, mouseY);
+    });
+
+    // Function to create particles at mouse position
+    function createParticles(x, y) {
+        for (let i = 0; i < 2; i++) {
+            particles.push(new Particle(x, y));
+        }
+    }
+
+    // Update and draw particles every frame
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height); // clear canvas
+
+        // Update and draw each particle
+        particles = particles.filter(particle => {
+            if (particle.isAlive()) {
+                particle.update();
+                ctx.globalAlpha = particle.opacity; // Set opacity
+                ctx.drawImage(particle.shoeImage, particle.x - particle.size / 2, particle.y - particle.size / 2, particle.size, particle.size);
+                return true;
+            }
+            return false;
+        });
+
+        requestAnimationFrame(animate);
+    }
+
+    animate(); // Start animation loop
+</script>
+</body>
+</html>

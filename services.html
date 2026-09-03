@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Sneaker World - Services</title>
+</head>
+   <!-- style -->
+<style>
+    div{
+        cursor: default;
+    }
+    .container{
+        cursor: none;
+    }
+    header{
+            cursor: default;
+        }
+        footer{
+            cursor: default;
+        }
+     /* Background animation */
+     @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        /* Apply the animation to body */
+        body {
+            background: linear-gradient(to right, #67f7c2, #01ac6d, #005b3a);
+            background-size: 200% 200%;
+            animation: gradientAnimation 8s ease infinite;
+            cursor: none;
+        }
+        #particleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1; /* Keeps the canvas behind all content */
+        }
+    nav {
+            animation: slider 5s linear infinite;
+            background-size: 400%;
+        }
+        @keyframes slider {
+            from{
+                background-position: 100% 50%;
+            }
+            to{
+                background-position: 0% 50%;
+            }
+        }
+        h1{
+    background-image: linear-gradient(90deg, green, lightgreen, darkgreen);
+    background-size: 400%;
+    animation:slide 5s linear infinite;
+    cursor: default;
+}
+@keyframes slide {
+    from {
+        background-position: 0% 50%;
+}
+to{
+    background-position: 100% 50%;
+}
+}
+</style>
+<body>
+    <canvas id="particleCanvas"></canvas>
+   <!-- Navbar -->
+   <nav class="bg-gradient-to-r from-green-600 via-yellow-400 to-green-600 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex-shrink-0">
+                <a href="index.html" class="flex items-center py-5 px-2 text-white hover:text-yellow-300 transition duration-300">
+                    <svg class="h-8 w-8 text-yellow-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6l-2 6h4l-2 6" />
+                    </svg>
+                    <span class="font-bold text-xl uppercase">sneaker world</span>
+                </a>
+            </div>
+
+            <!-- Primary Nav Links (centered) -->
+            <div class="hidden md:flex justify-center flex-grow space-x-4">
+                <a href="index.html" class="py-5 px-3 text-white hover:text-yellow-300 hover:bg-green-700 transition duration-300 rounded">Home</a>
+                <a href="about.html" class="py-5 px-3 text-white hover:text-yellow-300 hover:bg-green-700 transition duration-300 rounded">About</a>
+                <a href="contact.html" class="py-5 px-3 text-white hover:text-yellow-300 hover:bg-green-700 transition duration-300 rounded">Contact</a>
+            </div>
+
+            <!-- Secondary Nav -->
+            <div class="hidden md:flex items-center space-x-4">
+                <!-- Cart Icon -->
+                <button onclick="toggleCart(true)" class="relative p-2 text-white hover:text-yellow-300 transition-colors" style="cursor: pointer;">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                    <span class="cart-count-badge absolute top-0 right-0 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center hidden">0</span>
+                </button>
+                <a href="login.html" class="py-2 px-4 bg-yellow-300 text-green-900 font-semibold rounded hover:bg-yellow-400 hover:text-green-800 transition duration-300">Login</a>
+                <a href="login.html" class="py-2 px-4 bg-white text-green-900 font-semibold rounded hover:bg-gray-200 transition duration-300">Signup</a>
+            </div>
+
+            <!-- Mobile button -->
+            <div class="md:hidden flex items-center space-x-4">
+                <!-- Cart Icon (Mobile) -->
+                <button onclick="toggleCart(true)" class="relative p-2 text-white hover:text-yellow-300 transition-colors" style="cursor: pointer;">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                    <span class="cart-count-badge absolute top-0 right-0 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center hidden">0</span>
+                </button>
+                <button class="mobile-menu-button" style="cursor: pointer;">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                        <path d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu hidden md:hidden bg-green-600">
+        <a href="index.html" class="block py-2 px-4 text-white hover:bg-green-700 hover:text-yellow-300 transition duration-300">Home</a>
+        <a href="about.html" class="block py-2 px-4 text-white hover:bg-green-700 hover:text-yellow-300 transition duration-300">About</a>
+        <a href="contact.html" class="block py-2 px-4 text-white hover:bg-green-700 hover:text-yellow-300 transition duration-300">Contact</a>
+    </div>
+</nav>
+
+
+<script>
+    // Mobile menu toggle
+    const btn = document.querySelector('button.mobile-menu-button');
+    const menu = document.querySelector('.mobile-menu');
+
+    btn.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+    });
+</script>
+   <!-- Header -->
+<header class="bg-white py-6 shadow-md">
+    <div class="container mx-auto">
+        <h1 class="text-4xl font-bold text-center text-white py-4 px-8 rounded-lg shadow-lg">
+            Our Services
+        </h1>
+    </div>
+</header>
+
+   <!-- Main Content -->
+    <main class="py-10">
+        <div class="container mx-auto px-4">
+
+            <!-- Services Overview -->
+            <section class="mb-10">
+                <h2 class="text-3xl font-semibold text-center text-white mb-6">What We Offer</h2>
+                <p class="text-lg text-gray-300 text-center mb-6">
+                    At ShoeHub, we provide a variety of services to cater to all your sneaker needs. Whether you are looking for the latest trends or exclusive releases, we have you covered!
+                </p>
+            </section>
+
+            <!-- Services List -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-100 shadow-lg rounded-lg p-6">
+                    <h3 class="text-2xl font-semibold text-gray-800">Sneaker Sales</h3>
+                    <p class="text-gray-700 mt-2">
+                        Browse our extensive collection of sneakers from top brands. We offer competitive pricing and the latest styles.
+                    </p>
+                </div>
+                <div class="bg-gray-100 shadow-lg rounded-lg p-6">
+                    <h3 class="text-2xl font-semibold text-gray-800">Custom Sneaker Designs</h3>
+                    <p class="text-gray-700 mt-2">
+                        Unleash your creativity! Work with our designers to create a custom sneaker that expresses your unique style.
+                    </p>
+                </div>
+                <div class="bg-gray-100 shadow-lg rounded-lg p-6">
+                    <h3 class="text-2xl font-semibold text-gray-800">Sneaker Care & Maintenance</h3>
+                    <p class="text-gray-700 mt-2">
+                        Keep your sneakers looking fresh with our cleaning and maintenance services. We ensure your kicks are in top shape.
+                    </p>
+                </div>
+                <div class="bg-gray-100 shadow-lg rounded-lg p-6">
+                    <h3 class="text-2xl font-semibold text-gray-800">Exclusive Releases</h3>
+                    <p class="text-gray-700 mt-2">
+                        Be the first to know about exclusive sneaker releases and limited editions. Join our mailing list for updates!
+                    </p>
+                </div>
+                <div class="bg-gray-100 shadow-lg rounded-lg p-6">
+                    <h3 class="text-2xl font-semibold text-gray-800">Sneaker Events</h3>
+                    <p class="text-gray-700 mt-2">
+                        Join us for special events, including sneaker launches and community meetups. Connect with fellow sneaker enthusiasts!
+                    </p>
+                </div>
+                <div class="bg-gray-100 shadow-lg rounded-lg p-6">
+                    <h3 class="text-2xl font-semibold text-gray-800">Consultation Services</h3>
+                    <p class="text-gray-700 mt-2">
+                        Need help choosing the right sneakers? Our experts are here to guide you through your selections.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Customer Testimonials -->
+            <section class="mt-12">
+                <h2 class="text-3xl font-semibold text-center text-white mb-6">What Our Customers Say</h2>
+                <div class="flex flex-col space-y-6">
+                    <div class="bg-gray-100 shadow-lg rounded-lg p-6">
+                        <p class="text-gray-700 italic">"ShoeHub has the best selection of sneakers I've ever seen! Their custom design service is a game changer!"</p>
+                        <p class="font-semibold text-right">- Alex R.</p>
+                    </div>
+                    <div class="bg-gray-100 shadow-lg rounded-lg p-6">
+                        <p class="text-gray-700 italic">"I love my new kicks! The quality and care they put into maintenance is unparalleled."</p>
+                        <p class="font-semibold text-right">- Jamie L.</p>
+                    </div>
+                    <div class="bg-gray-100 shadow-lg rounded-lg p-6">
+                        <p class="text-gray-700 italic">"Their events are so much fun! I met so many great people who share my love for sneakers."</p>
+                        <p class="font-semibold text-right">- Jordan M.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Call to Action -->
+            <section class="mt-12 text-center">
+                <h2 class="text-3xl font-semibold text-white mb-4">Ready to Step Up Your Sneaker Game?</h2>
+                <p class="text-lg text-gray-300 mb-4">Explore our services and find the perfect sneakers just for you!</p>
+                <a href="contact.html" class="py-3 px-6 bg-yellow-300 text-green-900 font-semibold rounded hover:bg-yellow-400 transition duration-300">Contact Us Today!</a>
+            </section>
+        </div>
+    </main>
+
+   <!-- Footer -->
+   <footer class="bg-gradient-to-r from-green-600 via-green-400 to-green-600 py-10 text-white w-full mt-auto">
+    <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 px-4">
+        <!-- Company Info -->
+        <div>
+            <h3 class="font-semibold text-xl mb-4">Sneaker World</h3>
+            <p class="text-gray-200 mb-4">
+                Your one-stop shop for the best shoes. Find the perfect fit and style for any occasion.
+            </p>
+            <p>&copy; 2026 SneakerWorld. All Rights Reserved.</p>
+        </div>
+
+        <!-- Links -->
+        <div>
+            <h3 class="font-semibold text-xl mb-4">Company</h3>
+            <ul class="space-y-2">
+                <li><a href="about.html" class="hover:underline">About Us</a></li>
+                <li><a href="#" class="hover:underline">Careers</a></li>
+                <li><a href="#" class="hover:underline">Press</a></li>
+                <li><a href="blog.html" class="hover:underline">Blog</a></li>
+            </ul>
+        </div>
+
+        <!-- Support -->
+        <div>
+            <h3 class="font-semibold text-xl mb-4">Support</h3>
+            <ul class="space-y-2">
+                <li><a href="#" class="hover:underline">Help Center</a></li>
+                <li><a href="#" class="hover:underline">Shipping & Returns</a></li>
+                <li><a href="#" class="hover:underline">FAQs</a></li>
+                <li><a href="contact.html" class="hover:underline">Contact Us</a></li>
+            </ul>
+        </div>
+
+        <!-- Social Links & Newsletter -->
+        <div>
+            <h3 class="font-semibold text-xl mb-4">Stay Connected</h3>
+            <div class="flex space-x-4 mb-4">
+                <a href="#" class="text-white hover:text-yellow-300 transition duration-300">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="text-white hover:text-yellow-300 transition duration-300">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="text-white hover:text-yellow-300 transition duration-300">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="text-white hover:text-yellow-300 transition duration-300">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+            <p class="text-gray-200 mb-4">Subscribe to our newsletter for updates.</p>
+            <form>
+                <input type="email" placeholder="Your email" class="p-2 rounded w-full">
+                <button class="mt-2 w-full bg-yellow-300 text-green-900 py-2 rounded hover:bg-yellow-400 transition duration-300">
+                    Subscribe
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Back to Homepage Button in Footer -->
+    <div class="text-center mt-8">
+        <a href="index.html" class="w-full py-2 bg-yellow-300 text-green-900 rounded-md hover:bg-yellow-400 transition duration-300">Back to Homepage</a>
+    </div>
+</footer>
+<script>
+    const canvas = document.getElementById("particleCanvas"); 
+    const ctx = canvas.getContext("2d");
+
+    // Set canvas size to full window
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // Load shoe images
+    const shoeImages = [
+        'Images/90-removebg-preview.png', 
+        'Images/f93800d0479d8e16f46d7217bddd25d6-removebg-preview.png', 
+        'Images/airforce_1-removebg-preview.png'
+    ];
+
+    // Particle constructor function
+    function Particle(x, y) {
+        this.x = x;
+        this.y = y;
+        this.size = Math.random() * 5 + 25; // Adjust size for image scaling
+        this.speedX = Math.random() * 2 - 1.5;
+        this.speedY = Math.random() * 2 - 1.5;
+        this.life = 100; // life of the particle in frames
+        this.opacity = 1;
+
+        // Randomly select a shoe image
+        this.shoeImage = new Image();
+        this.shoeImage.src = shoeImages[Math.floor(Math.random() * shoeImages.length)];
+    }
+
+    // Draw the particle (using an image instead of a circle)
+    Particle.prototype.update = function () {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        // Quick opacity and size reduction to mimic Thanos snap
+        this.opacity -= 0.02;  // Fast fade-out effect
+        this.size *= 1;        // Shrinking effect
+
+        this.life--;
+    };
+
+    // Check if particle is still alive
+    Particle.prototype.isAlive = function () {
+        return this.life > 0 && this.opacity > 0;
+    };
+
+    // Create an array to store particles
+    let particles = [];
+
+    // Mouse event listener
+    document.addEventListener("mousemove", (event) => {
+        let mouseX = event.x;
+        let mouseY = event.y;
+        createParticles(mouseX, mouseY);
+    });
+
+    // Function to create particles at mouse position
+    function createParticles(x, y) {
+        for (let i = 0; i < 2; i++) {
+            particles.push(new Particle(x, y));
+        }
+    }
+
+    // Update and draw particles every frame
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height); // clear canvas
+
+        // Update and draw each particle
+        particles = particles.filter(particle => {
+            if (particle.isAlive()) {
+                particle.update();
+                ctx.globalAlpha = particle.opacity; // Set opacity
+                ctx.drawImage(particle.shoeImage, particle.x - particle.size / 2, particle.y - particle.size / 2, particle.size, particle.size);
+                return true;
+            }
+            return false;
+        });
+
+        requestAnimationFrame(animate);
+    }
+
+    animate(); // Start animation loop
+</script>
+    <!-- Cart Overlay -->
+    <div id="cart-overlay" onclick="toggleCart(false)" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden transition-opacity duration-300"></div>
+
+    <!-- Cart Panel -->
+    <div id="cart-panel" class="fixed top-0 right-0 w-full md:w-96 h-full bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col" style="cursor: default;">
+        <div class="p-6 border-b border-gray-100 flex justify-between items-center bg-green-600 text-white">
+            <h3 class="text-2xl font-bold uppercase tracking-wider">Your Cart</h3>
+            <button onclick="toggleCart(false)" class="p-2 hover:bg-green-700 rounded-full transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+
+        <div id="cart-items-container" class="flex-grow overflow-y-auto p-6">
+            <!-- Items will be injected here by cart.js -->
+        </div>
+
+        <div class="p-6 border-t border-gray-100 bg-gray-50">
+            <div class="flex justify-between items-center mb-6">
+                <span class="text-gray-600 font-medium uppercase">Total</span>
+                <span id="cart-total" class="text-2xl font-bold text-green-700">$0.00</span>
+            </div>
+            <a href="checkout.html" class="block w-full bg-green-600 text-white text-center py-4 rounded-xl font-bold text-lg hover:bg-green-700 hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300">
+                PROCEED TO CHECKOUT
+            </a>
+            <button onclick="toggleCart(false)" class="w-full mt-4 text-gray-500 font-medium hover:text-gray-700 transition-colors">
+                Continue Shopping
+            </button>
+        </div>
+    </div>
+
+    <script src="cart.js"></script>
+</body>
+</html>
